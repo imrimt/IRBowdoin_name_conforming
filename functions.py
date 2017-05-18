@@ -65,7 +65,11 @@ def csv_from_excel(inFile):
 	wr = csv.writer(your_csv_file, quoting = csv.QUOTE_ALL)
 
 	for rownum in range(sh.nrows):
-		wr.writerow(sh.row_values(rownum))
+                try:
+                        wr.writerow(sh.row_values(rownum))                        
+                except ValueError:
+                        print("Error in dictionary on row: ")
+                        print(rownum)
 
 	your_csv_file.close()
 
